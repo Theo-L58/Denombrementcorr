@@ -1,13 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/**
+ * titre:
+ * description:
+ * auteur:
+ * date création:
+ * date dernière modif:
+ */
+using System;
 
 namespace Denombrements
 {
     class Program
     {
+        /// <summary>
+        /// application qui permet de faire le dénombrement
+        /// </summary>
+        /// <param name="args">signifie qu'on est dans le module principal, pris en compte</param>
         static void Main(string[] args)
         {
             int c = 1;
@@ -20,50 +27,55 @@ namespace Denombrements
                 Console.Write("Choix :                            ");
                 c = int.Parse(Console.ReadLine());
 
-                if (c == 0) { Environment.Exit(0); }
-
-                if (c == 1)
+                if (c == 0)
                 {
-                    Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                    int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                                                           // calcul de r
-                    long r = 1;
-                    for (int k = 1; k <= n; k++)
-                        r *= k;
-                    Console.WriteLine(n + "! = " + r);
+                    Environment.Exit(0);
                 }
                 else
                 {
-                    if (c == 2)
+                    //saisie du nombre d'éléments à gérer
+                    Console.Write("nombre total d'éléments à gérer = ");
+                    int totalElement = int.Parse(Console.ReadLine());
+                    long result = 1, result1 = 1, result2 = 1;
+                    if (c == 1)
                     {
-                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
-                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
-                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
                         // calcul de r
-                        long r = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r *= k;
-                        //Console.WriteLine("résultat = " + (r1 / r2));
-                        Console.WriteLine("A(" + t + "/" + n + ") = " + r);
+                        for (int k = 1; k <= totalElement; k++)
+                        {
+                            result *= k;
+                        }
+                        Console.WriteLine(totalElement + "! = " + result);
                     }
                     else
                     {
-                        Console.Write("nombre total d'éléments à gérer = "); // le nombre d'éléments à gérer
-                        int t = int.Parse(Console.ReadLine()); // saisir le nombre
-                        Console.Write("nombre d'éléments dans le sous ensemble = "); // le sous ensemble
-                        int n = int.Parse(Console.ReadLine()); // saisir le nombre
-                        // calcul de r1
-                        long r1 = 1;
-                        for (int k = (t - n + 1); k <= t; k++)
-                            r1 *= k;
-                        // calcul de r2
-                        long r2 = 1;
-                        for (int k = 1; k <= n; k++)
-                            r2 *= k;
-                        // calcul de r3
-                        //Console.WriteLine("résultat = " + (r1 / r2));
-                        Console.WriteLine("C(" + t + "/" + n + ") = " + (r1 / r2));
+                        // Saisie du nombre d'éléments dans le sous ensemble
+                        Console.Write("nombre d'éléments dans le sous ensemble = ");
+                        int nbreSousEnsemble = int.Parse(Console.ReadLine());
+                        if (c == 2)
+                        {
+                            // calcul de r
+                            for (int k = (totalElement - nbreSousEnsemble + 1); k <= totalElement; k++)
+                            {
+                                result *= k;
+                            }
+                            // affichage du résultat
+                            Console.WriteLine("A(" + totalElement + "/" + nbreSousEnsemble + ") = " + result);
+                        }
+                        else
+                        {
+                            // calcul de r1
+                            for (int k = (totalElement - nbreSousEnsemble + 1); k <= totalElement; k++)
+                            {
+                                result1 *= k;
+                            }
+                            // calcul de r2
+                            for (int k = 1; k <= nbreSousEnsemble; k++)
+                            {
+                                result2 *= k;
+                            }
+                            // Affihage du resultat
+                            Console.WriteLine("C(" + totalElement + "/" + nbreSousEnsemble + ") = " + (result1 / result2));
+                        }
                     }
                 }
             }
